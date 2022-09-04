@@ -1,0 +1,230 @@
+Name:               miller
+Roles:              control-plane,master
+Labels:             beta.kubernetes.io/arch=arm64
+                    beta.kubernetes.io/instance-type=k3s
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=arm64
+                    kubernetes.io/hostname=miller
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=true
+                    node-role.kubernetes.io/master=true
+                    node.kubernetes.io/instance-type=k3s
+Annotations:        flannel.alpha.coreos.com/backend-data: {"VNI":1,"VtepMAC":"3a:16:71:8f:80:c6"}
+                    flannel.alpha.coreos.com/backend-type: vxlan
+                    flannel.alpha.coreos.com/kube-subnet-manager: true
+                    flannel.alpha.coreos.com/public-ip: 10.1.0.151
+                    k3s.io/hostname: miller
+                    k3s.io/internal-ip: 10.1.0.151
+                    k3s.io/node-args: ["server","--data-dir","/var/lib/rancher/k3s"]
+                    k3s.io/node-config-hash: U4QQOQI6WEWJMXCYWE743BSWFI4NFYIUOZPIOF7XH4DVIJWHCHEA====
+                    k3s.io/node-env: {"K3S_DATA_DIR":"/var/lib/rancher/k3s/data/86a8c46cd5fe617d1c1c90d80222fa4b7e04e7da9b3caace8af4daf90fc5a699"}
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Thu, 01 Sep 2022 09:00:41 +0700
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  miller
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 01 Sep 2022 13:11:38 +0700
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Thu, 01 Sep 2022 13:06:37 +0700   Thu, 01 Sep 2022 09:00:37 +0700   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Thu, 01 Sep 2022 13:06:37 +0700   Thu, 01 Sep 2022 09:00:37 +0700   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Thu, 01 Sep 2022 13:06:37 +0700   Thu, 01 Sep 2022 09:00:37 +0700   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Thu, 01 Sep 2022 13:06:37 +0700   Thu, 01 Sep 2022 09:00:42 +0700   KubeletReady                 kubelet is posting ready status. AppArmor enabled
+Addresses:
+  InternalIP:  10.1.0.151
+  Hostname:    miller
+Capacity:
+  cpu:                4
+  ephemeral-storage:  61096240Ki
+  memory:             3884332Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  59434422226
+  memory:             3884332Ki
+  pods:               110
+System Info:
+  Machine ID:                 ac557cf593694a54aa9f791dd433bfca
+  System UUID:                ac557cf593694a54aa9f791dd433bfca
+  Boot ID:                    213327ff-c7d6-49d4-9fa9-e497dc1aadbb
+  Kernel Version:             5.4.0-1050-raspi
+  OS Image:                   Ubuntu 20.04.2 LTS
+  Operating System:           linux
+  Architecture:               arm64
+  Container Runtime Version:  containerd://1.5.7-k3s2
+  Kubelet Version:            v1.22.3+k3s1
+  Kube-Proxy Version:         v1.22.3+k3s1
+PodCIDR:                      10.42.0.0/24
+PodCIDRs:                     10.42.0.0/24
+ProviderID:                   k3s://miller
+Non-terminated Pods:          (4 in total)
+  Namespace                   Name                                      CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                      ------------  ----------  ---------------  -------------  ---
+  kube-system                 coredns-85cb69466-jpf6t                   100m (2%)     0 (0%)      70Mi (1%)        170Mi (4%)     4h10m
+  kube-system                 metrics-server-9cf544f65-22nhq            0 (0%)        0 (0%)      0 (0%)           0 (0%)         4h10m
+  kube-system                 local-path-provisioner-64ffb68fd-2lrhf    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4h10m
+  kube-system                 svclb-traefik-cgz87                       0 (0%)        0 (0%)      0 (0%)           0 (0%)         4h8m
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests   Limits
+  --------           --------   ------
+  cpu                100m (2%)  0 (0%)
+  memory             70Mi (1%)  170Mi (4%)
+  ephemeral-storage  0 (0%)     0 (0%)
+Events:              <none>
+
+
+Name:               mann
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=arm64
+                    beta.kubernetes.io/instance-type=k3s
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=arm64
+                    kubernetes.io/hostname=mann
+                    kubernetes.io/os=linux
+                    node.kubernetes.io/instance-type=k3s
+Annotations:        flannel.alpha.coreos.com/backend-data: {"VNI":1,"VtepMAC":"aa:d4:47:41:04:13"}
+                    flannel.alpha.coreos.com/backend-type: vxlan
+                    flannel.alpha.coreos.com/kube-subnet-manager: true
+                    flannel.alpha.coreos.com/public-ip: 10.1.0.152
+                    k3s.io/hostname: mann
+                    k3s.io/internal-ip: 10.1.0.152
+                    k3s.io/node-args: ["agent","--server","https://10.1.0.151:6443","--token","********"]
+                    k3s.io/node-config-hash: 2XUSXNACPKLWRVPEOW3GLVLU2FFSWIQQWWPRURXO7T3ZJHKXSCYA====
+                    k3s.io/node-env: {"K3S_DATA_DIR":"/var/lib/rancher/k3s/data/86a8c46cd5fe617d1c1c90d80222fa4b7e04e7da9b3caace8af4daf90fc5a699"}
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Thu, 01 Sep 2022 09:02:06 +0700
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  mann
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 01 Sep 2022 13:11:34 +0700
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Thu, 01 Sep 2022 13:07:50 +0700   Thu, 01 Sep 2022 09:02:05 +0700   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Thu, 01 Sep 2022 13:07:50 +0700   Thu, 01 Sep 2022 09:02:05 +0700   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Thu, 01 Sep 2022 13:07:50 +0700   Thu, 01 Sep 2022 09:02:05 +0700   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Thu, 01 Sep 2022 13:07:50 +0700   Thu, 01 Sep 2022 09:02:06 +0700   KubeletReady                 kubelet is posting ready status. AppArmor enabled
+Addresses:
+  InternalIP:  10.1.0.152
+  Hostname:    mann
+Capacity:
+  cpu:                4
+  ephemeral-storage:  61096240Ki
+  memory:             3884332Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  59434422226
+  memory:             3884332Ki
+  pods:               110
+System Info:
+  Machine ID:                 776d82d7519048c8a0dba804aa43d007
+  System UUID:                776d82d7519048c8a0dba804aa43d007
+  Boot ID:                    b0462bb5-6678-4c79-9dc6-e420cf7df8db
+  Kernel Version:             5.4.0-1050-raspi
+  OS Image:                   Ubuntu 20.04.2 LTS
+  Operating System:           linux
+  Architecture:               arm64
+  Container Runtime Version:  containerd://1.5.7-k3s2
+  Kubelet Version:            v1.22.3+k3s1
+  Kube-Proxy Version:         v1.22.3+k3s1
+PodCIDR:                      10.42.1.0/24
+PodCIDRs:                     10.42.1.0/24
+ProviderID:                   k3s://mann
+Non-terminated Pods:          (2 in total)
+  Namespace                   Name                        CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                        ------------  ----------  ---------------  -------------  ---
+  kube-system                 traefik-74dd4975f9-stq8w    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4h8m
+  kube-system                 svclb-traefik-ktcmz         0 (0%)        0 (0%)      0 (0%)           0 (0%)         4h8m
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests  Limits
+  --------           --------  ------
+  cpu                0 (0%)    0 (0%)
+  memory             0 (0%)    0 (0%)
+  ephemeral-storage  0 (0%)    0 (0%)
+Events:              <none>
+
+
+Name:               edmund
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=arm64
+                    beta.kubernetes.io/instance-type=k3s
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=arm64
+                    kubernetes.io/hostname=edmund
+                    kubernetes.io/os=linux
+                    node.kubernetes.io/instance-type=k3s
+Annotations:        flannel.alpha.coreos.com/backend-data: {"VNI":1,"VtepMAC":"ee:e0:89:3b:e6:47"}
+                    flannel.alpha.coreos.com/backend-type: vxlan
+                    flannel.alpha.coreos.com/kube-subnet-manager: true
+                    flannel.alpha.coreos.com/public-ip: 10.1.0.153
+                    k3s.io/hostname: edmund
+                    k3s.io/internal-ip: 10.1.0.153
+                    k3s.io/node-args: ["agent","--server","https://10.1.0.151:6443","--token","********"]
+                    k3s.io/node-config-hash: 2XUSXNACPKLWRVPEOW3GLVLU2FFSWIQQWWPRURXO7T3ZJHKXSCYA====
+                    k3s.io/node-env: {"K3S_DATA_DIR":"/var/lib/rancher/k3s/data/86a8c46cd5fe617d1c1c90d80222fa4b7e04e7da9b3caace8af4daf90fc5a699"}
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Thu, 01 Sep 2022 09:02:09 +0700
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  edmund
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 01 Sep 2022 13:11:29 +0700
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Thu, 01 Sep 2022 13:11:11 +0700   Thu, 01 Sep 2022 09:02:09 +0700   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Thu, 01 Sep 2022 13:11:11 +0700   Thu, 01 Sep 2022 09:02:09 +0700   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Thu, 01 Sep 2022 13:11:11 +0700   Thu, 01 Sep 2022 09:02:09 +0700   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Thu, 01 Sep 2022 13:11:11 +0700   Thu, 01 Sep 2022 09:02:10 +0700   KubeletReady                 kubelet is posting ready status. AppArmor enabled
+Addresses:
+  InternalIP:  10.1.0.153
+  Hostname:    edmund
+Capacity:
+  cpu:                4
+  ephemeral-storage:  61096240Ki
+  memory:             3884332Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  59434422226
+  memory:             3884332Ki
+  pods:               110
+System Info:
+  Machine ID:                 336b299c6c5443cba289ef07c733082d
+  System UUID:                336b299c6c5443cba289ef07c733082d
+  Boot ID:                    48df392a-a107-4c86-8b5a-903784d9752a
+  Kernel Version:             5.4.0-1050-raspi
+  OS Image:                   Ubuntu 20.04.2 LTS
+  Operating System:           linux
+  Architecture:               arm64
+  Container Runtime Version:  containerd://1.5.7-k3s2
+  Kubelet Version:            v1.22.3+k3s1
+  Kube-Proxy Version:         v1.22.3+k3s1
+PodCIDR:                      10.42.2.0/24
+PodCIDRs:                     10.42.2.0/24
+ProviderID:                   k3s://edmund
+Non-terminated Pods:          (2 in total)
+  Namespace                   Name                   CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                   ------------  ----------  ---------------  -------------  ---
+  kube-system                 svclb-traefik-bgbdk    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4h8m
+  default                     nginx                  2 (50%)       2 (50%)     500M (12%)       500M (12%)     106m
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                2 (50%)     2 (50%)
+  memory             500M (12%)  500M (12%)
+  ephemeral-storage  0 (0%)      0 (0%)
+Events:              <none>

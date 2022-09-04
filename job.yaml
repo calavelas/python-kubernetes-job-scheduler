@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nginx
+spec:
+  template:
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+      restartPolicy: Never
+      command: ["/bin/sh"]
+      args: ["echo test"]
+  backoffLimit: 4
+  activeDeadlineSeconds: 100
