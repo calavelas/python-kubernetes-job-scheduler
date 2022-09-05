@@ -9,28 +9,29 @@
 - By looking into Part2, I assume that source code is download and save to database as an entity and mount into k8s job when scan job is triggered
 - By mounting seperately it'll require job to mount each source code to every node that job need to be schdule
 - This is inefficient in my perspective
-- Instead, why not keeping source code git remote url and folder location in the database then create common storage that mount on every node as "persistant volume"
-- To expalin this , When scan job was trigger instead of mounting it one by one, we mount common storage as "persistant volume" to everynode and download source code to the common storage in specific path
-- Keep source code path and git remote in scan entity and pass the path to job (this will tell job service which folder to scan in the storage)
-- Since "persistant volume" is mount to every node, we no longer restict on which node to schedule anymore
-- "Persistant volume" can be deleted after all trigger job is done scaning (We can group this job based on git user account?)
-- This will also improve all the aspect in the requirement(Utilize all node in cluster)
+- Instead, why not keeping source code's git remote url and folder location in the database then create common storage that mount on every node as "persistant volume"
+- To expalin this , When scan job was trigger instead of mounting it one by one, we mount common storage as "persistant volume" to every node and download source code to the common storage in specific path
+- Keep source code path scan entity and pass the path to job (this will tell job service which folder to scan in the storage)
+- Since "persistant volume" is mount to every node, we no longer restrict on which node to schedule anymore
+- "Persistant volume" can be deleted after all trigger job is done scaning (We can group these job based on git user account?)
+- This will also improve all the aspect in the requirement (From Utilize all node in cluster)
 
 ## Question 2 : Answer
 ### Using Node Autoscale and Kubernetes HPA
 - With HPA we can set threshold for services to scale based on metrics like CPU/Memory
 - Since we know avg baseline of this application on weekday / performance per pod we can determine how many request pod can take
+- IIRC we can create rules of HPA to scale base on custom metric in HPA 2.0
 - Main scaling would be API/Worker which is up and down depend on load
 - Storage service is quite tricky due to DB connection pools (we can't scale this without concerning the DB connection pools)
 - Scan job is schdule based on how many request worker is received
-- IIRC we can create rules of HPA to scale base on custom metric in HPA 2.0
 - Using cloud node autoscale is quite scary due to surge of traffic/ddos
 - Need to have security or rules to prevent it autoscale from mistake
 - In the weekend we scale down node/service to save cost
 - Another solution is switching to serverless on part that can be utilize serverless fucntion like Worker/API services
-- Cold start can be annoyed but if the load is inconsistant maybe it worth waiting sub minute of cold start in exchange of reducing cost of hosting full cluster
+- For serverless cold start can be annoyed but if the load is inconsistant maybe it worth waiting sub minute of cold start in exchange of reducing cost of hosting full cluster
 ### Get better performance / saved cost by using Persistant Volumes
 - Same for Question1 Section 2 for answer
+- Or utilizing serverless function
 # Part 2: Technical Challenge : Schedule batch jobs
 ## How to use
 - Edit batchJob.json to add new job
