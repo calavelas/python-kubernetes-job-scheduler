@@ -17,12 +17,6 @@
       "image": "debian",
       "requestMem": "2Gi",
       "requestCpu": "200m"
-    },
-    {
-      "jobName": "job4",
-      "image": "debian",
-      "requestMem": "100Mi",
-      "requestCpu": "200m"
     }
   ]
 }
