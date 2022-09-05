@@ -1,6 +1,6 @@
 from pprint import pp
-from module.getNodePriority import *
-from module.job import *
+from src.getNodePriority import *
+from src.job import *
 import argparse
 parser = argparse.ArgumentParser()
 
