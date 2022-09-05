@@ -4,6 +4,7 @@
 - From this diagram, I kinda feel that systems is heavily relied on Storage services (which also relied on DB), I think making DB read replica and spliting Storge service into 2 part would help on performace/scalability
 - First part will responsible for writing to database (requesting create db entity,writing final scan result) this will be write to main DB directly 
 - Second part will responsible for query database replica for scan result which will reduce load to primary database
+- This will improve all the aspect in the requirement
 ### Use Persistant Volumes
 - By looking into Part2, I assume that source code is download and save to database as an entity and mount into k8s job when scan job is triggered
 - By mounting seperately it'll require job to mount each source code to every node that job need to be schdule
@@ -13,6 +14,23 @@
 - Keep source code path and git remote in scan entity and pass the path to job (this will tell job service which folder to scan in the storage)
 - Since "persistant volume" is mount to every node, we no longer restict on which node to schedule anymore
 - "Persistant volume" can be deleted after all trigger job is done scaning (We can group this job based on git user account?)
+- This will also improve all the aspect in the requirement(Utilize all node in cluster)
+
+## Question 2 : Answer
+### Using Node Autoscale and Kubernetes HPA
+- With HPA we can set threshold for services to scale based on metrics like CPU/Memory
+- Since we know avg baseline of this application on weekday / performance per pod we can determine how many request pod can take
+- Main scaling would be API/Worker which is up and down depend on load
+- Storage service is quite tricky due to DB connection pools (we can't scale this without concerning the DB connection pools)
+- Scan job is schdule based on how many request worker is received
+- IIRC we can create rules of HPA to scale base on custom metric in HPA 2.0
+- Using cloud node autoscale is quite scary due to surge of traffic/ddos
+- Need to have security or rules to prevent it autoscale from mistake
+- In the weekend we scale down node/service to save cost
+- Another solution is switching to serverless on part that can be utilize serverless fucntion like Worker/API services
+- Cold start can be annoyed but if the load is inconsistant maybe it worth waiting sub minute of cold start in exchange of reducing cost of hosting full cluster
+### Get better performance / saved cost by using Persistant Volumes
+- Same for Question1 Section 2 for answer
 # Part 2: Technical Challenge : Schedule batch jobs
 ## How to use
 - Edit batchJob.json to add new job
