@@ -1,3 +1,18 @@
+# Part 1: Architectural Challenge : High Level Product workflow
+## Question 1 : Answer 
+### Spliting Storage Service
+- From this diagram, I kinda feel that systems is heavily relied on Storage services (which also relied on DB), I think making DB read replica and spliting Storge service into 2 part would help on performace/scalability
+- First part will responsible for writing to database (requesting create db entity,writing final scan result) this will be write to main DB directly 
+- Second part will responsible for query database replica for scan result which will reduce load to primary database
+### Use Persistant Volumes
+- By looking into Part2, I assume that source code is download and save to database as an entity and mount into k8s job when scan job is triggered
+- By mounting seperately it'll require job to mount each source code to every node that job need to be schdule
+- This is inefficient in my perspective
+- Instead, why not keeping source code git remote url and folder location in the database then create common storage that mount on every node as "persistant volume"
+- To expalin this , When scan job was trigger instead of mounting it one by one, we mount common storage as "persistant volume" to everynode and download source code to the common storage in specific path
+- Keep source code path and git remote in scan entity and pass the path to job (this will tell job service which folder to scan in the storage)
+- Since "persistant volume" is mount to every node, we no longer restict on which node to schedule anymore
+- "Persistant volume" can be deleted after all trigger job is done scaning (We can group this job based on git user account?)
 # Part 2: Technical Challenge : Schedule batch jobs
 ## How to use
 - Edit batchJob.json to add new job
@@ -23,3 +38,5 @@ python main.py -f batchJob.json
 - Primary node affinity will be 100 (max priority) and the rest will be 16-(priority number)
 - Example : firstNodepriotiry = 100 , secondNodepriotiry = 15 , thirdNodepriotiry = 14
 - With this priorty, pod will schdule in the order that sastisfy the requirement
+- This method of "CPU to Memory Ratio" has some issues if job require weird cpu/memory ratio which I'm already aware of it but couldn't find better solution (Due to time constrain and sunken cost of work)
+- This can be improve and revise but I think there's better method to solve the problem of mounting source code to cluster (Referencing Answer 1 of Section1)
