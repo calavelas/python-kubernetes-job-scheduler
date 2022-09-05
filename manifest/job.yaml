@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job1
+spec:
+  template:
+    spec:
+      containers:
+      - name: hello
+        image: debian
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
+        resources:
+          requests:
+            memory: "500M"
+            cpu: "0.4"
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution: []
+      restartPolicy: Never
+  backoffLimit: 4
+  

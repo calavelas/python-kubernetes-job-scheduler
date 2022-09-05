@@ -1,0 +1,28 @@
+{
+  "batchJob1": [
+    {
+      "jobName": "job1",
+      "image": "debian",
+      "requestMem": "500Mi",
+      "requestCpu": "200m"
+    },
+    {
+      "jobName": "job2",
+      "image": "debian",
+      "requestMem": "1Gi",
+      "requestCpu": "100m"
+    },
+    {
+      "jobName": "job3",
+      "image": "debian",
+      "requestMem": "2Gi",
+      "requestCpu": "200m"
+    },
+    {
+      "jobName": "job4",
+      "image": "debian",
+      "requestMem": "100Mi",
+      "requestCpu": "200m"
+    }
+  ]
+}
